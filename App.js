@@ -67,7 +67,6 @@ var scene = new THREE.Scene();
         window.addEventListener("mousemove", onMouseMove, false);
         window.addEventListener("click", onClick);
         window.addEventListener("wheel", onWheel);
-        document.body.addEventListener("touchmove", onWheel);
 
 
         function onMouseMove(event){
@@ -103,13 +102,10 @@ var scene = new THREE.Scene();
             }
         }
 
-        var radius = -15;
+        var radius = -5;
 
         function onWheel(event){
             var y=event.wheelDeltaY*0.001;
-            if(document.body.event.wheelDeltaY>10){
-                y=event.wheelDeltaY*0.001;
-            }
             radius-=y;
 
             for(var i=0; i<90; i++){
