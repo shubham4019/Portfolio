@@ -1,4 +1,5 @@
 //import { Vector2, Raycaster } from "three";
+import {OrbitControls} from "./OrbitControls.js";
 const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
@@ -61,15 +62,12 @@ var scene = new THREE.Scene();
 
         window.addEventListener("mousemove", onMouseMove, false);
         window.addEventListener("click", onClick);
-        window.addEventListener("wheel", onScroll);
 
+        const control = new OrbitControls(camera, renderer.domElement);
+        control.maxPolarAngle=Math.PI*0.5;
+        control.maxdistance=100;
+        control.mindistance=-100;
 
-        var y=0;
-        radius=10;
-        function onScroll(event){
-            y=event.wheelDeltaY*(-0.009);
-            radius+=y;
-        }
 
         function onMouseMove(event){
             mouse.x = (event.clientX / window.innerWidth)*2 -1;
@@ -113,15 +111,15 @@ var scene = new THREE.Scene();
         createjs.Ticker.addEventListener("tick", animate);
 
 
-        theta=0.1;
+        // theta=0.1;
         function animate(){
-            theta +=0.1;
-            camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
-            camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
-            camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
-            camera.lookAt(scene.position);
+            // theta +=0.1;
+            // camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
+            // camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
+            // camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
+            // camera.lookAt(scene.position);
 
-            camera.updateMatrixWorld();
+            // camera.updateMatrixWorld();
 
             reset();
             hover();
