@@ -2,7 +2,7 @@ const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
 
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000);
         camera.position.z=5;
 
         var renderer = new THREE.WebGLRenderer({antialias: true});
@@ -103,9 +103,13 @@ var scene = new THREE.Scene();
             }
         }
 
-        var radius = 20;
+        var radius = -15;
+
         function onWheel(event){
             var y=event.wheelDeltaY*0.001;
+            if(document.body.event.wheelDeltaY>10){
+                y=event.wheelDeltaY*0.001;
+            }
             radius-=y;
 
             for(var i=0; i<90; i++){
