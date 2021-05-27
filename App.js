@@ -1,4 +1,5 @@
 //import { Vector2, Raycaster } from "three";
+const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
 
@@ -35,6 +36,11 @@ var scene = new THREE.Scene();
                 cubes[i].position.x=(Math.random()-0.5)*20;
                 cubes[i].position.y=(Math.random()-0.5)*20;
                 cubes[i].position.z=(Math.random()-0.5)*20;
+
+                cubes[i].rotation.x=(Math.random()-0.5)*20;
+                cubes[i].rotation.y=(Math.random()-0.5)*20;
+                cubes[i].rotation.z=(Math.random()-0.5)*20;
+
                 cubes[i].userData.value=`${i}`;
 
                 scene.add(cubes[i]);
@@ -43,11 +49,13 @@ var scene = new THREE.Scene();
 
         createCubes();
 
-        var light = new THREE.PointLight(0x45edd1, 1, 1000);
-        light.position.set(0, 0, 0);
+        cubes[3].material.color.set(BLUE);
+
+        var light = new THREE.PointLight(0xffffff, 1, 1000);
+        light.position.set(0, 0, 5);
         scene.add(light);
 
-        light = new THREE.PointLight(0x45edd1, 1, 1000);
+        light = new THREE.PointLight(0xffffff, 1, 1000);
         light.position.set(0, 0, 25);
         scene.add(light);
 
@@ -57,19 +65,16 @@ var scene = new THREE.Scene();
         function onMouseMove(event){
             mouse.x = (event.clientX / window.innerWidth)*2 -1;
             mouse.y = -(event.clientY / window.innerHeight)*2 +1;
-
-            //console.log(event.clientX + " " + event.clientY);
         }
 
         function hover(){
             raycast.setFromCamera(mouse, camera);
             intersects = raycast.intersectObjects(scene.children);
-            //console.log(intersects.length);
+
             for(var i=0; i<intersects.length; i++){
                 intersects[i].object.material.transparent = true;
                 intersects[i].object.material.opacity = 0.5;
-                intersects[i].object.material.color.set(0xbd45ed);
-                //console.log(intersects[i].object.userData.value);
+                intersects[i].object.material.color.set(BLUE);
             }
         }
 
@@ -85,12 +90,15 @@ var scene = new THREE.Scene();
         function onClick(){
             raycast.setFromCamera(mouse, camera);
             intersects = raycast.intersectObjects(scene.children);
-            //console.log(intersects.length);
             if(intersects.length>0){
                 clickedBox = intersects[0].object.userData.value;
-                //console.log(clickedBox);
             }
         }
+
+        const loader = new THREE.TextureLoader();
+            loader.load('X6PjOyY-black-gradient-wallpaper.png' , (texture)=>{
+                scene.background = texture;  
+            });
 
         createjs.Ticker.timingMode=createjs.Ticker.RAF;
         createjs.Ticker.addEventListener("tick", animate);
@@ -107,10 +115,6 @@ var scene = new THREE.Scene();
 
             camera.updateMatrixWorld();
 
-            for(var i=0; i<15; i++){
-                //cubes[i].rotation.x+=Math.random()*0.015 +0.01;
-                //cubes[i].rotation.y+=Math.random()*0.01 + 0.01;
-            }
             reset();
             hover();
             renderer.render(scene, camera);
