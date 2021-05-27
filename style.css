@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    height: 100vh;
+}
+canvas{
+    display: block;
+}
+welcome{
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 40%;
+    z-index: 100;
+    display: block;
+}
