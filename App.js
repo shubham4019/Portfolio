@@ -25,16 +25,16 @@ var scene = new THREE.Scene();
 
         var cubes=[];
         function createCubes(){
-            for(var i=0; i<15; i++){
+            for(var i=0; i<90; i++){
                 var geometry = new THREE.BoxGeometry(1, 1, 1);
                 var material = new THREE.MeshLambertMaterial({color: 0x0036bc});
 
                 cubes[i]= (new THREE.Mesh(geometry, material));
 
 
-                cubes[i].position.x=(Math.random()-0.5)*10;
-                cubes[i].position.y=(Math.random()-0.5)*10;
-                cubes[i].position.z=(Math.random()-0.5)*10;
+                cubes[i].position.x=(Math.random()-0.5)*20;
+                cubes[i].position.y=(Math.random()-0.5)*20;
+                cubes[i].position.z=(Math.random()-0.5)*20;
                 cubes[i].userData.value=`${i}`;
 
                 scene.add(cubes[i]);
