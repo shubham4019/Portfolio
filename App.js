@@ -56,13 +56,13 @@ var scene = new THREE.Scene();
         light1.position.set(0, 0, 25);
         scene.add(light1);
 
-        const help = new THREE.PointLightHelper(light);
-        const help1 = new THREE.PointLightHelper(light1);
-        scene.add(help);
-        scene.add(help1);
+        // const help = new THREE.PointLightHelper(light);
+        // const help1 = new THREE.PointLightHelper(light1);
+        // scene.add(help);
+        // scene.add(help1);
 
-        const gridhelp = new THREE.GridHelper(100, 100);
-        scene.add(gridhelp);
+        // const gridhelp = new THREE.GridHelper(100, 100);
+        // scene.add(gridhelp);
 
         window.addEventListener("mousemove", onMouseMove, false);
         window.addEventListener("click", onClick);
