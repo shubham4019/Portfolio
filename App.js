@@ -61,6 +61,15 @@ var scene = new THREE.Scene();
 
         window.addEventListener("mousemove", onMouseMove, false);
         window.addEventListener("click", onClick);
+        window.addEventListener("wheel", onScroll);
+
+
+        var y=0;
+        radius=10;
+        function onScroll(event){
+            y=event.wheelDeltaY*(-0.009);
+            radius+=y;
+        }
 
         function onMouseMove(event){
             mouse.x = (event.clientX / window.innerWidth)*2 -1;
@@ -105,7 +114,6 @@ var scene = new THREE.Scene();
 
 
         theta=0.1;
-        radius=10;
         function animate(){
             theta +=0.1;
             camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
