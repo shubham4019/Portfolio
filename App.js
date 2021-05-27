@@ -1,5 +1,3 @@
-//import { Vector2, Raycaster } from "three";
-import {OrbitControls} from "./OrbitControls.js";
 const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
@@ -50,23 +48,26 @@ var scene = new THREE.Scene();
 
         createCubes();
 
-        cubes[3].material.color.set(BLUE);
-
         var light = new THREE.PointLight(0xffffff, 1, 1000);
         light.position.set(0, 0, 5);
         scene.add(light);
 
-        light = new THREE.PointLight(0xffffff, 1, 1000);
-        light.position.set(0, 0, 25);
-        scene.add(light);
+        var light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        light1.position.set(0, 0, 25);
+        scene.add(light1);
+
+        const help = new THREE.PointLightHelper(light);
+        const help1 = new THREE.PointLightHelper(light1);
+        scene.add(help);
+        scene.add(help1);
+
+        const gridhelp = new THREE.GridHelper(100, 100);
+        scene.add(gridhelp);
 
         window.addEventListener("mousemove", onMouseMove, false);
         window.addEventListener("click", onClick);
-
-        const control = new OrbitControls(camera, renderer.domElement);
-        control.maxPolarAngle=Math.PI*0.5;
-        control.maxdistance=100;
-        control.mindistance=-100;
+        window.addEventListener("wheel", onWheel);
+        document.body.addEventListener("touchmove", onWheel);
 
 
         function onMouseMove(event){
@@ -102,6 +103,17 @@ var scene = new THREE.Scene();
             }
         }
 
+        var radius = 20;
+        function onWheel(event){
+            var y=event.wheelDeltaY*0.001;
+            radius-=y;
+
+            for(var i=0; i<90; i++){
+                cubes[i].rotation.x +=y*2;
+                cubes[i].rotation.y +=y*2;
+            }
+        }
+
         const loader = new THREE.TextureLoader();
             loader.load('X6PjOyY-black-gradient-wallpaper.png' , (texture)=>{
                 scene.background = texture;  
@@ -110,18 +122,20 @@ var scene = new THREE.Scene();
         createjs.Ticker.timingMode=createjs.Ticker.RAF;
         createjs.Ticker.addEventListener("tick", animate);
 
-
-        // theta=0.1;
+        var theta = 0.1;
         function animate(){
-            // theta +=0.1;
-            // camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
-            // camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
-            // camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
-            // camera.lookAt(scene.position);
+            theta +=0.1;
 
-            // camera.updateMatrixWorld();
+            camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
+            camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
+            camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
+            
+
+            camera.lookAt(scene.position);
+            camera.updateMatrixWorld();
 
             reset();
             hover();
+
             renderer.render(scene, camera);
         }
