@@ -51,13 +51,23 @@ table tr{
 }
 @media only screen and (max-width:630px) {
     .outerbody1{
-        grid-column: 3/span 6;
+        grid-column: 1/span 7;
     }
 }
 .common{
     background-color: darkgray;
     padding: 30px 30px;
     opacity: 60%;
+}
+@media only screen and (max-width:730px) {
+    .common{
+        display: flex;
+        flex-direction: column;
+    }
+    .outerbody1 .common{
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 #intro{
     margin-top: 10%;
@@ -122,6 +132,7 @@ ul li{
     background-color: #ffffff;
     transition: all 0.5s ease-in-out;
     transform: scaleY(1);
+    color: #000;
   }
   
   .btn-1 a:hover::before,
