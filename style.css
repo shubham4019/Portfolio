@@ -22,17 +22,35 @@ whole{
     grid-template-columns:repeat(10, 2fr);
 }
 
+ul li{
+    font-weight:bolder;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+table {
+    background-color: darkgray;
+    grid-column: 1/12;
+}
+table tr{
+    font-size: 30px;
+}
+
 .outerbody{
-    grid-column: 1/4;
+    grid-column: 1/5;
     margin-bottom: 350px;
 }
 
+@media only screen and (max-width:600px) {
+    .outerbody{
+        grid-column: 1/span 12;
+    }
+}
 .outerbody1{
     grid-column: 2/ 6;
 }
-
 .common{
-    background-color:darkgray;
+    background-color: darkgray;
     padding: 30px 30px;
     opacity: 60%;
 }
@@ -51,16 +69,6 @@ ul li{
     font-weight:bolder;
     font-size: 30px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-table {
-    grid-column: 3/ 9;
-    width: 100%;
-    padding: 0% 150px;
-    background-color: darkgray;
-}
-table tr{
-    font-size: 30px;
 }
 .center {
     flex-direction: row;
@@ -170,3 +178,6 @@ table tr{
     transition: all 0.5s ease-in-out;
     transform: scaleX(1);
   }
+
+
+  
