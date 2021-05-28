@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D model</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/db8bf2c43b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <script src="three.min.js"></script>
@@ -14,26 +15,69 @@
     <script type="module" src="./three.module.js"></script>
     <script type="module" src="./OrbitControls.js"></script>
     <script type="module" src="./App.js"></script>
-
     <canvas id="bg"></canvas>
-    <whole>
-        <div class="intro">
-            <p>My Portfolio<br>Shubham Bansode</p>
-        </div>
 
-        <div class="next">
-            <h1 style="text-align: center;">PROJECTS</h1>
-            <ul>
-                <li>
-                    Attendo
-                </li>
-                <li>
-                    Sentience
-                </li>
-                <li>
-                    CUDA implementation in CV
-                </li>
-            </ul>
+    <whole>
+        <table>
+            <tr>
+                <th><a href="#intro">First</a></th>
+                <th><a href="#next">Second</a></th>
+                <th><a href="#third">Third</a></th>
+            </tr>
+        </table>
+
+        <div class="outerbody">
+            <div class="common" id="intro">
+                <h>My Portfolio</h><br>
+                    <h style="font-weight: bolder;">Shubham Bansode</h>
+            </div>
+            <div class="common" id="intro">
+                <p style="font-size: 30px;">Reach out to me here</p>
+                <div class="center">
+                    <div class="btn-2">
+                        <a href=""><span>
+                          <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+                          GitHub</span></a>
+                      </div>
+
+                      <div class="btn-2">
+                        <a href=""><span>
+                          <i class="fa fa-linkedin fa-lg" aria-hidden="true"></i>
+                          LinkedIn</span></a>
+                      </div>
+
+                    <div class="btn-2">
+                      <a href=""><span>
+                        <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
+                        Facebook</span></a>
+                    </div>
+
+                    <div class="btn-2">
+                        <a href=""><span>
+                          <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
+                          Instagram</span></a>
+                      </div>
+
+                  </div>
+            </div>
+        </div>
+        
+
+        <div class="outerbody1">
+            <div class="common" id="next">
+                <h1 style="text-align: center">PROJECTS</h1>
+                <ul>
+                    <li>
+                        Attendo
+                    </li>
+                    <li>
+                        Sentience
+                    </li>
+                    <li>
+                        CUDA implementation in CV
+                    </li>
+                </ul>
+            </div>
         </div>
     </whole>
 </body>

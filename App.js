@@ -103,15 +103,20 @@ var scene = new THREE.Scene();
         }
 
         var radius = -5;
+        var y=0;
 
         function onWheel(event){
-            var y=event.wheelDeltaY*0.001;
+            y=event.wheelDeltaY*0.001;
             radius-=y;
 
             for(var i=0; i<90; i++){
                 cubes[i].rotation.x +=y*2;
                 cubes[i].rotation.y +=y*2;
             }
+
+            // var timeSet=setInterval(onWheel("wheel"), 0);
+            // console.log(timeSet);
+            // setTimeout(() => clearInterval(timeSet), 5000);
         }
 
         const loader = new THREE.TextureLoader();
@@ -123,7 +128,8 @@ var scene = new THREE.Scene();
         createjs.Ticker.addEventListener("tick", animate);
 
         var theta = 0.1;
-        function animate(){
+
+        function cameraRev(){
             theta +=0.1;
 
             camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
@@ -133,7 +139,11 @@ var scene = new THREE.Scene();
 
             camera.lookAt(scene.position);
             camera.updateMatrixWorld();
+        }
 
+        function animate(){
+
+            cameraRev();
             reset();
             hover();
 
