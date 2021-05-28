@@ -232,7 +232,11 @@ ul li{
         .navi a.icon{
           float: right;
           display: block;
-      }
+        }
+
+        .navi a.icon:hover{
+            color: #f2f2f2;
+        }
   }
   
   @media screen and (max-width: 500px) {
