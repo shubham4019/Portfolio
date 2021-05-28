@@ -106,7 +106,6 @@ ul li a{
   
   span {
     position: relative;
-    /* z-index coz when we put bg to before and after this span text will not be visible */
     z-index: 105;
   }
 
@@ -117,8 +116,6 @@ ul li a{
   .btn-2 a:hover::after {
     transform: scaleX(0);
   }
-  
-  /* Button 2 styles */
   
   .btn-2 a {
     color: #ffffff;

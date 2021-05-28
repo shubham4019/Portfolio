@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/three": "^0.128.0"
+  },
+  "dependencies": {
+    "normalize-wheel": "^1.0.1"
   }
 }

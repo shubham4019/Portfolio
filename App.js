@@ -1,4 +1,3 @@
-
 const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
@@ -24,7 +23,7 @@ var scene = new THREE.Scene();
         var intersects;
         var clickedBox;
 
-        var cubeNum=100;
+        var cubeNum=150;
         var cubes=[];
         function createCubes(){
             for(var i=0; i<cubeNum; i++){
@@ -157,7 +156,7 @@ var scene = new THREE.Scene();
 
         function cameraRev(){
             theta +=0.1;
-
+            // radius=20*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
