@@ -58,39 +58,33 @@ var scene = new THREE.Scene();
         var help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 0, 25);
         scene.add(light1);
-        scene.add(help1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
         help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 25, 0);
         scene.add(light1);
-        scene.add(help1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
         help1 = new THREE.PointLightHelper(light1);
         light1.position.set(25, 0, 0);
         scene.add(light1);
-        scene.add(help1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
         help1 = new THREE.PointLightHelper(light1);
         light1.position.set(-25, 0, 0);
         scene.add(light1);
-        scene.add(help1);
 
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
         help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, -25, 0);
         scene.add(light1);
-        scene.add(help1);
 
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
         help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 0, -25);
         scene.add(light1);
-        scene.add(help1);
         // const help = new THREE.PointLightHelper(light);
         // const help1 = new THREE.PointLightHelper(light1);
         // scene.add(help);
@@ -129,7 +123,7 @@ var scene = new THREE.Scene();
             for( var i=0; i<scene.children.length; i++){
                 if(scene.children[i].material){
                     scene.children[i].material.opacity= (scene.children[i].userData.value==clickedBox? 0.8 : 1.0);
-                    scene.children[i].material.color.set(scene.children[i].userData.value==clickedBox? 0xbc0404:0xf7f7f7);
+                    scene.children[i].material.color.set(scene.children[i].userData.value==clickedBox? BLUE:0xf7f7f7);
                 }
             }
         }
