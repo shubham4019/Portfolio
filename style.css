@@ -41,13 +41,18 @@ table tr{
     margin-bottom: 350px;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:730px) {
     .outerbody{
         grid-column: 1/span 12;
     }
 }
 .outerbody1{
     grid-column: 2/ 6;
+}
+@media only screen and (max-width:630px) {
+    .outerbody1{
+        grid-column: 3/span 6;
+    }
 }
 .common{
     background-color: darkgray;
