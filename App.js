@@ -1,3 +1,4 @@
+
 const BLUE = 0x45edd1;
 
 var scene = new THREE.Scene();
@@ -23,9 +24,10 @@ var scene = new THREE.Scene();
         var intersects;
         var clickedBox;
 
+        var cubeNum=100;
         var cubes=[];
         function createCubes(){
-            for(var i=0; i<90; i++){
+            for(var i=0; i<cubeNum; i++){
                 var geometry = new THREE.BoxGeometry(1, 1, 1);
                 var material = new THREE.MeshLambertMaterial({color: 0x0036bc});
 
@@ -49,13 +51,46 @@ var scene = new THREE.Scene();
         createCubes();
 
         var light = new THREE.PointLight(0xffffff, 1, 1000);
-        light.position.set(0, 0, 5);
+        light.position.set(0, 0, 0);
         scene.add(light);
 
         var light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        var help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 0, 25);
         scene.add(light1);
+        scene.add(help1);
 
+        light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        help1 = new THREE.PointLightHelper(light1);
+        light1.position.set(0, 25, 0);
+        scene.add(light1);
+        scene.add(help1);
+
+        light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        help1 = new THREE.PointLightHelper(light1);
+        light1.position.set(25, 0, 0);
+        scene.add(light1);
+        scene.add(help1);
+
+        light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        help1 = new THREE.PointLightHelper(light1);
+        light1.position.set(-25, 0, 0);
+        scene.add(light1);
+        scene.add(help1);
+
+
+        light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        help1 = new THREE.PointLightHelper(light1);
+        light1.position.set(0, -25, 0);
+        scene.add(light1);
+        scene.add(help1);
+
+
+        light1 = new THREE.PointLight(0xffffff, 1, 1000);
+        help1 = new THREE.PointLightHelper(light1);
+        light1.position.set(0, 0, -25);
+        scene.add(light1);
+        scene.add(help1);
         // const help = new THREE.PointLightHelper(light);
         // const help1 = new THREE.PointLightHelper(light1);
         // scene.add(help);
@@ -80,17 +115,8 @@ var scene = new THREE.Scene();
 
             for(var i=0; i<intersects.length; i++){
                 intersects[i].object.material.transparent = true;
-                intersects[i].object.material.opacity = 0.5;
-                intersects[i].object.material.color.set(BLUE);
-            }
-        }
-
-        function reset(){
-            for( var i=0; i<scene.children.length; i++){
-                if(scene.children[i].material){
-                    scene.children[i].material.opacity= (scene.children[i].userData.value==clickedBox? 0.8 : 1.0);
-                    scene.children[i].material.color.set(scene.children[i].userData.value==clickedBox? 0xbc0404:0xf7f7f7);
-                }
+                intersects[i].object.material.opacity = 0.9;
+                intersects[i].object.material.color.set(Math.random()*0xffffff);
             }
         }
 
@@ -99,6 +125,12 @@ var scene = new THREE.Scene();
             intersects = raycast.intersectObjects(scene.children);
             if(intersects.length>0){
                 clickedBox = intersects[0].object.userData.value;
+            }
+            for( var i=0; i<scene.children.length; i++){
+                if(scene.children[i].material){
+                    scene.children[i].material.opacity= (scene.children[i].userData.value==clickedBox? 0.8 : 1.0);
+                    scene.children[i].material.color.set(scene.children[i].userData.value==clickedBox? 0xbc0404:0xf7f7f7);
+                }
             }
         }
 
@@ -109,7 +141,7 @@ var scene = new THREE.Scene();
             y=event.wheelDeltaY*0.001;
             radius-=y;
 
-            for(var i=0; i<90; i++){
+            for(var i=0; i<cubeNum; i++){
                 cubes[i].rotation.x +=y*2;
                 cubes[i].rotation.y +=y*2;
             }
@@ -144,7 +176,6 @@ var scene = new THREE.Scene();
         function animate(){
 
             cameraRev();
-            reset();
             hover();
 
             renderer.render(scene, camera);
