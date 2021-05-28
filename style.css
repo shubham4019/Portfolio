@@ -28,14 +28,6 @@ ul li{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-table {
-    background-color: darkgray;
-    grid-column: 1/12;
-}
-table tr{
-    font-size: 30px;
-}
-
 .outerbody{
     grid-column: 1/5;
     margin-bottom: 350px;
@@ -55,9 +47,9 @@ table tr{
     }
 }
 .common{
-    background-color: darkgray;
+    background-color: rgb(96, 112, 112);
     padding: 30px 30px;
-    opacity: 60%;
+    opacity: 90%;
 }
 @media only screen and (max-width:730px) {
     .common{
@@ -195,5 +187,67 @@ ul li{
     transform: scaleX(1);
   }
 
+  .navi{
+      z-index: 100;
+      grid-column: 1/12;
+      opacity: 90%;
+      width: 100%;
+      background-color:azure;
+      position: fixed;
+  }
 
+  .navi a {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    float: left;
+    display: block;
+    color: #000;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .navi a:hover{
+      background-color: #010100;
+      color: #f2f2f2;
+  }
+
+  .navi a.active{
+      background-color: red;
+      color: aqua;
+      text-decoration: none;
+  }
+
+  .navi .icon{
+      display: none;
+  }
+
+  @media screen and (max-width: 500px) {
+      .navi a:not(:first-child){
+        display: none;
+        color: black;
+    }
+        .navi a.icon{
+          float: right;
+          display: block;
+      }
+  }
   
+  @media screen and (max-width: 500px) {
+      .navi.responsive {
+          position: fixed;
+        }
+      .navi.responsive a.icon{
+          position: absolute;
+          right: 0;
+          top:0;
+      }
+
+      .navi.responsive a{
+          float: none;
+          display: block;
+          text-align: left;
+      }
+  }
