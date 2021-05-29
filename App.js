@@ -1,5 +1,8 @@
 const BLUE = 0x45edd1;
 var radius = -5;
+if(window.innerWidth<600){
+    radius=-30;
+}
 
 var scene = new THREE.Scene();
 
@@ -99,17 +102,28 @@ var scene = new THREE.Scene();
         window.addEventListener("click", onClick);
         window.addEventListener("wheel", onWheel);
 
-        var startY;
+        var startY, startX;
         function startTouch(event){
             var tObj = event.changedTouches[0];
+            startX= parseInt(tObj.clientX);
             startY= parseInt(tObj.clientY);
         }
 
 
         function onTouchMove(event){
             var touchobj = event.changedTouches[0] // reference first touch point for this event
-            var dist = parseInt(touchobj.clientY) - startY;
-            radius -= dist*0.001;
+            var dist1 = parseInt(touchobj.clientX) - startX;
+            var dist2 = parseInt(touchobj.clientY) - startY;
+            
+            var n1 = Math.sqrt(dist1**2 + dist2**2);
+
+            if(dist2>=0){
+                var dist = n1;
+            }else{
+                dist = -n1;
+            }
+
+            radius += dist*0.001;
 
             for (var i=0; i<cubeNum; i++){
                 cubes[i].rotation.x +=dist*0.001;
