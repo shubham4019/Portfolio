@@ -1,4 +1,5 @@
 const BLUE = 0x45edd1;
+var radius = -5;
 
 var scene = new THREE.Scene();
 
@@ -98,7 +99,6 @@ var scene = new THREE.Scene();
         window.addEventListener("click", onClick);
         window.addEventListener("wheel", onWheel);
 
-
         var startY;
         function startTouch(event){
             var tObj = event.changedTouches[0];
@@ -109,7 +109,7 @@ var scene = new THREE.Scene();
         function onTouchMove(event){
             var touchobj = event.changedTouches[0] // reference first touch point for this event
             var dist = parseInt(touchobj.clientY) - startY;
-            radius-=dist*0.001;
+            radius -= dist*0.001;
 
             for (var i=0; i<cubeNum; i++){
                 cubes[i].rotation.x +=dist*0.001;
@@ -122,8 +122,6 @@ var scene = new THREE.Scene();
             mouse.y = -(event.clientY / window.innerHeight)*2 +1;
         }
 
-        var radius = -5;
-
         function hover(){
             raycast.setFromCamera(mouse, camera);
             intersects = raycast.intersectObjects(scene.children);
@@ -132,11 +130,6 @@ var scene = new THREE.Scene();
                 intersects[i].object.material.transparent = true;
                 intersects[i].object.material.opacity = 0.9;
                 intersects[i].object.material.color.set(Math.random()*0xffffff);
-            }
-            if(window.innerWidth<=600){
-                var z=Math.sqrt((mouse.x**2)+(mouse.y**2));
-                20*Math.sin(THREE.MathUtils.degToRad(z*10000)) != 0 ? radius = 20*Math.sin(THREE.MathUtils.degToRad(z*10)): radius = radius;
-                // console.log(radius);
             }
         }
 
