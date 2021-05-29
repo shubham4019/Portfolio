@@ -58,34 +58,34 @@ var scene = new THREE.Scene();
         scene.add(light);
 
         var light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        var help1 = new THREE.PointLightHelper(light1);
+        // var help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 0, 25);
         scene.add(light1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        help1 = new THREE.PointLightHelper(light1);
+        // help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 25, 0);
         scene.add(light1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        help1 = new THREE.PointLightHelper(light1);
+        // help1 = new THREE.PointLightHelper(light1);
         light1.position.set(25, 0, 0);
         scene.add(light1);
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        help1 = new THREE.PointLightHelper(light1);
+        // help1 = new THREE.PointLightHelper(light1);
         light1.position.set(-25, 0, 0);
         scene.add(light1);
 
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        help1 = new THREE.PointLightHelper(light1);
+        // help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, -25, 0);
         scene.add(light1);
 
 
         light1 = new THREE.PointLight(0xffffff, 1, 1000);
-        help1 = new THREE.PointLightHelper(light1);
+        // help1 = new THREE.PointLightHelper(light1);
         light1.position.set(0, 0, -25);
         scene.add(light1);
         // const help = new THREE.PointLightHelper(light);
@@ -126,8 +126,8 @@ var scene = new THREE.Scene();
             radius += dist*0.001;
 
             for (var i=0; i<cubeNum; i++){
-                cubes[i].rotation.x +=dist*0.001;
-                cubes[i].rotation.y +=dist*0.001;
+                cubes[i].rotation.x +=dist*0.0005;
+                cubes[i].rotation.y +=dist*0.0005;
             }
         }
 
