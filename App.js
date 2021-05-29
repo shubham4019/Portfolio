@@ -93,14 +93,36 @@ var scene = new THREE.Scene();
         // scene.add(gridhelp);
 
         window.addEventListener("mousemove", onMouseMove, false);
+        window.addEventListener("touchstart", startTouch, false);
+        window.addEventListener("touchmove", onTouchMove, false);
         window.addEventListener("click", onClick);
         window.addEventListener("wheel", onWheel);
 
+
+        var startY;
+        function startTouch(event){
+            var tObj = event.changedTouches[0];
+            startY= parseInt(tObj.clientY);
+        }
+
+
+        function onTouchMove(event){
+            var touchobj = event.changedTouches[0] // reference first touch point for this event
+            var dist = parseInt(touchobj.clientY) - startY;
+            radius-=dist*0.001;
+
+            for (var i=0; i<cubeNum; i++){
+                cubes[i].rotation.x +=dist*0.001;
+                cubes[i].rotation.y +=dist*0.001;
+            }
+        }
 
         function onMouseMove(event){
             mouse.x = (event.clientX / window.innerWidth)*2 -1;
             mouse.y = -(event.clientY / window.innerHeight)*2 +1;
         }
+
+        var radius = -5;
 
         function hover(){
             raycast.setFromCamera(mouse, camera);
@@ -111,7 +133,14 @@ var scene = new THREE.Scene();
                 intersects[i].object.material.opacity = 0.9;
                 intersects[i].object.material.color.set(Math.random()*0xffffff);
             }
+            if(window.innerWidth<=600){
+                var z=Math.sqrt((mouse.x**2)+(mouse.y**2));
+                20*Math.sin(THREE.MathUtils.degToRad(z*10000)) != 0 ? radius = 20*Math.sin(THREE.MathUtils.degToRad(z*10)): radius = radius;
+                // console.log(radius);
+            }
         }
+
+
 
         function onClick(){
             raycast.setFromCamera(mouse, camera);
@@ -126,8 +155,6 @@ var scene = new THREE.Scene();
                 }
             }
         }
-
-        var radius = -5;
         var y=0;
 
         function onWheel(event){
@@ -138,10 +165,6 @@ var scene = new THREE.Scene();
                 cubes[i].rotation.x +=y*2;
                 cubes[i].rotation.y +=y*2;
             }
-
-            // var timeSet=setInterval(onWheel("wheel"), 0);
-            // console.log(timeSet);
-            // setTimeout(() => clearInterval(timeSet), 5000);
         }
 
         const loader = new THREE.TextureLoader();
@@ -156,7 +179,6 @@ var scene = new THREE.Scene();
 
         function cameraRev(){
             theta +=0.1;
-            // radius=20*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.x=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.y=radius*(Math.sin(THREE.MathUtils.degToRad(theta)));
             camera.position.z=radius*(Math.cos(THREE.MathUtils.degToRad(theta)));
@@ -167,7 +189,6 @@ var scene = new THREE.Scene();
         }
 
         function animate(){
-
             cameraRev();
             hover();
 
